@@ -40,3 +40,9 @@ app.MapControllers();
 
 app.Run();
 
+//agrega caracteristicas nuevas a la api, (nugget) donde hay plugins para funcionalidades para la api
+//ORM (conector de c# con la base de datos, mapeo de los objetos del codigo con el de la base de datos)
+//dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+//dotnet add package Microsoft.EntityFrameworkCore.Design
+//dotnet tool install --global dotnet-ef --version 10.0.*
+//ef (entityframework)
