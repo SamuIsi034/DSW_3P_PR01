@@ -15,12 +15,17 @@ builder.Services.AddOpenApi();
 builder.Services.AddControllers();
 
 //Agregar dependencias
-builder.Services.AddScoped<IMisionRepository, MisionSqlRepository>();
+//builder.Services.AddScoped<IMisionRepository, MisionSqlRepository>();
+builder.Services.AddScoped<IMisionRepository, MisionPostgreSqlRepository>();
 builder.Services.AddScoped<IMisionService, MisionService>();
 //Configuracion del SQL SERVER
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServerConnection")
-    )
+// builder.Services.AddDbContext<AppDbContext>(options =>
+//     options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServerConnection")
+//     )
+// );
+//Configuracion de PostgreSQL
+builder.Services.AddDbContext<PostgreSqlDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("PostgreSqlConnection"))
 );
 // Configuracion de JWT
 var jwt = builder.Configuration.GetSection("Jwt");
@@ -97,3 +102,5 @@ app.Run();
 //ef (entityframework)
 
 //JWT, dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer --version "10.0.*"
+
+//dotnet add package Npgsql.EntityFrameworkCore.PostgreSQL --version 10.0.*
